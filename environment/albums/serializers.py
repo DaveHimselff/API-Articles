@@ -27,3 +27,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'title', 'content', 'pub_date', 'category', 'tags')
+    
+    #Update instance and Validated_data is removed
+
+    
