@@ -38,9 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'albums','rest_framework',
+
+    #Initial commit
+    'corsheaders'
+    
 ]
 
+#Initial commit
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+
+#Initial commit
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

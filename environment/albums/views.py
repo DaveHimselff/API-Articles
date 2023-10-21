@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics,status
+from rest_framework.response import Response
 from .models import  Tag, Category, Article
 from .serializers import TagSerializer, CategorySerializer, ArticleSerializer
 
@@ -45,13 +46,11 @@ class ArticleListCreateView(generics.ListCreateAPIView):
     serializer_class = ArticleSerializer
 
 
-class ArticleDeleteView(generics.DestroyAPIView):
+class ArticleRetrieveView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-    lookup_field = 'id'
 
-
-class ArticleUpdateView(generics.UpdateAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    lookup_field = 'id'
+    def destroy(self, request, *args, **kwargs):
+        article = self.get_object()
+        article.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
